@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
 import DEFAULT_RETRIEVAL_TEXT from "@/data/DefaultRetrievalText";
+import { type FormEvent, useState } from "react";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
 
@@ -35,10 +35,7 @@ export function UploadDocumentsForm() {
         onChange={(e) => setDocument(e.target.value)}
       />
       <Button type="submit">
-        <div
-          role="status"
-          className={`${isLoading ? "" : "hidden"} flex justify-center`}
-        >
+        <output className={`${isLoading ? "" : "hidden"} flex justify-center`}>
           <svg
             aria-hidden="true"
             className="w-6 h-6 text-white animate-spin dark:text-white fill-sky-800"
@@ -56,7 +53,7 @@ export function UploadDocumentsForm() {
             />
           </svg>
           <span className="sr-only">Loading...</span>
-        </div>
+        </output>
         <span className={isLoading ? "hidden" : ""}>Upload</span>
       </Button>
     </form>

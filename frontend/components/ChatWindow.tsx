@@ -1,6 +1,6 @@
 "use client";
 
-import { type Message } from "ai";
+import type { Message } from "ai";
 import { useChat } from "ai/react";
 import { useState } from "react";
 import type { FormEvent, ReactNode } from "react";
@@ -8,11 +8,12 @@ import { toast } from "sonner";
 import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
 
 import { ChatMessageBubble } from "@/components/ChatMessageBubble";
-import { IntermediateStep } from "./IntermediateStep";
-import { Button } from "./ui/button";
+import { cn } from "@/utils/cn";
 import { ArrowDown, LoaderCircle, Paperclip } from "lucide-react";
-import { Checkbox } from "./ui/checkbox";
+import { IntermediateStep } from "./IntermediateStep";
 import { UploadDocumentsForm } from "./UploadDocumentsForm";
+import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -21,12 +22,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { cn } from "@/utils/cn";
 
 function ChatMessages(props: {
   messages: Message[];
   emptyStateComponent: ReactNode;
-  sourcesForMessages: Record<string, any>;
+  sourcesForMessages: Record<string, unknown>;
   aiEmoji?: string;
   className?: string;
 }) {
@@ -43,7 +43,7 @@ function ChatMessages(props: {
             key={m.id}
             message={m}
             aiEmoji={props.aiEmoji}
-            sources={props.sourcesForMessages[sourceKey]}
+            sources={props.sourcesForMessages[sourceKey] as unknown[]} // TODO
           />
         );
       })}
@@ -92,10 +92,10 @@ export function ChatInput(props: {
             {props.actions}
             <Button type="submit" className="self-end" disabled={disabled}>
               {props.loading ? (
-                <span role="status" className="flex justify-center">
+                <output aria-live="polite" className="flex justify-center">
                   <LoaderCircle className="animate-spin" />
                   <span className="sr-only">Loading...</span>
-                </span>
+                </output>
               ) : (
                 <span>Send</span>
               )}
@@ -180,7 +180,7 @@ export function ChatWindow(props: {
     useState(false);
 
   const [sourcesForMessages, setSourcesForMessages] = useState<
-    Record<string, any>
+    Record<string, unknown>
   >({});
 
   const chat = useChat({
@@ -201,7 +201,7 @@ export function ChatWindow(props: {
     },
     streamMode: "text",
     onError: (e) =>
-      toast.error(`Error while processing your request`, {
+      toast.error("Error while processing your request", {
         description: e.message,
       }),
   });
@@ -237,7 +237,7 @@ export function ChatWindow(props: {
     setIntermediateStepsLoading(false);
 
     if (!response.ok) {
-      toast.error(`Error while processing your request`, {
+      toast.error("Error while processing your request", {
         description: json.error,
       });
       return;

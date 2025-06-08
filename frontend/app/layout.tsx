@@ -1,9 +1,7 @@
 import "./globals.css";
-import { Public_Sans } from "next/font/google";
 import { ActiveLink } from "@/components/Navbar";
-import { Button } from "@/components/ui/button";
-import { GithubIcon } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
+import { Public_Sans } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const publicSans = Public_Sans({ subsets: ["latin"] });
@@ -15,6 +13,7 @@ const Logo = () => (
     viewBox="0 0 240 41"
     className="h-8 flex-shrink-0 self-start"
   >
+    <title>LangChain Logo</title>
     <path
       fill="currentColor"
       d="M61.514 11.157a3.943 3.943 0 0 0-2.806 1.158l-3.018 3.01a3.951 3.951 0 0 0-1.147 3.095l.019.191a3.894 3.894 0 0 0 1.128 2.314c.435.434.914.709 1.496.9.03.175.047.352.047.53 0 .797-.31 1.546-.874 2.107l-.186.186c-1.008-.344-1.848-.847-2.607-1.604a6.888 6.888 0 0 1-1.927-3.67l-.034-.193-.153.124a3.675 3.675 0 0 0-.294.265l-3.018 3.01a3.957 3.957 0 0 0 2.807 6.757 3.959 3.959 0 0 0 2.806-1.158l3.019-3.01a3.958 3.958 0 0 0 0-5.599 3.926 3.926 0 0 0-1.462-.92 3.252 3.252 0 0 1 .924-2.855 6.883 6.883 0 0 1 2.664 1.656 6.906 6.906 0 0 1 1.926 3.67l.035.193.153-.124c.104-.083.202-.173.296-.267l3.018-3.01a3.956 3.956 0 0 0-2.808-6.756h-.004Z"
@@ -38,25 +37,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>LangChain + Next.js Template</title>
+        <title>LLM Playground</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta
           name="description"
           content="Starter template showing how to use LangChain in Next.js projects. See source code and deploy your own at https://github.com/langchain-ai/langchain-nextjs-template!"
         />
-        <meta property="og:title" content="LangChain + Next.js Template" />
-        <meta
-          property="og:description"
-          content="Starter template showing how to use LangChain in Next.js projects. See source code and deploy your own at https://github.com/langchain-ai/langchain-nextjs-template!"
-        />
-        <meta property="og:image" content="/images/og-image.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="LangChain + Next.js Template" />
-        <meta
-          name="twitter:description"
-          content="Starter template showing how to use LangChain in Next.js projects. See source code and deploy your own at https://github.com/langchain-ai/langchain-nextjs-template!"
-        />
-        <meta name="twitter:image" content="/images/og-image.png" />
       </head>
       <body className={publicSans.className}>
         <NuqsAdapter>
@@ -73,7 +59,7 @@ export default function RootLayout({
                 </a>
                 <nav className="flex gap-1 flex-col md:flex-row">
                   <ActiveLink href="/">🏴‍☠️ Chat</ActiveLink>
-                  <ActiveLink href="/structured_output">
+                  {/* <ActiveLink href="/structured_output">
                     🧱 Structured Output
                   </ActiveLink>
                   <ActiveLink href="/agents">🦜 Agents</ActiveLink>
@@ -84,20 +70,8 @@ export default function RootLayout({
                   <ActiveLink href="/ai_sdk">
                     🌊 React Server Components
                   </ActiveLink>
-                  <ActiveLink href="/langgraph">🕸️ LangGraph</ActiveLink>
+                  <ActiveLink href="/langgraph">🕸️ LangGraph</ActiveLink> */}
                 </nav>
-              </div>
-
-              <div className="flex justify-center">
-                <Button asChild variant="outline" size="default">
-                  <a
-                    href="https://github.com/langchain-ai/langchain-nextjs-template"
-                    target="_blank"
-                  >
-                    <GithubIcon className="size-3" />
-                    <span>Open in GitHub</span>
-                  </a>
-                </Button>
               </div>
             </div>
             <div className="bg-background mx-4 relative grid rounded-t-2xl border border-input border-b-0">

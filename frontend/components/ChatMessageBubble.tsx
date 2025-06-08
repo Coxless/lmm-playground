@@ -4,12 +4,12 @@ import type { Message } from "ai/react";
 export function ChatMessageBubble(props: {
   message: Message;
   aiEmoji?: string;
-  sources: any[];
+  sources: unknown[];
 }) {
   return (
     <div
       className={cn(
-        `rounded-[24px] max-w-[80%] mb-8 flex`,
+        "rounded-[24px] max-w-[80%] mb-8 flex",
         props.message.role === "user"
           ? "bg-secondary text-secondary-foreground px-4 py-2"
           : null,
@@ -25,14 +25,14 @@ export function ChatMessageBubble(props: {
       <div className="whitespace-pre-wrap flex flex-col">
         <span>{props.message.content}</span>
 
-        {props.sources && props.sources.length ? (
+        {props.sources?.length ? (
           <>
             <code className="mt-4 mr-auto bg-primary px-2 py-1 rounded">
               <h2>🔍 Sources:</h2>
             </code>
             <code className="mt-1 mr-2 bg-primary px-2 py-1 rounded text-xs">
               {props.sources?.map((source, i) => (
-                <div className="mt-2" key={"source:" + i}>
+                <div className="mt-2" key={`source: ${i}`}>
                   {i + 1}. &quot;{source.pageContent}&quot;
                   {source.metadata?.loc?.lines !== undefined ? (
                     <div>

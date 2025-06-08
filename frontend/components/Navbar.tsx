@@ -1,9 +1,9 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
 
 export const ActiveLink = (props: { href: string; children: ReactNode }) => {
   const pathname = usePathname();
